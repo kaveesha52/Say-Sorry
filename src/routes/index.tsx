@@ -8,12 +8,12 @@ import boyBouquetImg from "@/assets/boy-bouquet.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "I'm Sorry, My Love 💕" },
+      { title: "I'm Sorry, Kavee 🥺💕" },
       {
         name: "description",
         content: "A little note from me to you — because you mean the world to me.",
       },
-      { property: "og:title", content: "I'm Sorry, My Love 💕" },
+      { property: "og:title", content: "I'm Sorry, Kavee 🥺💕" },
       {
         property: "og:description",
         content: "A little note from me to you — because you mean the world to me.",
@@ -90,7 +90,7 @@ function Index() {
 
               <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
                 I messed up, and I'm really sorry. You're the sweetest part of my day,
-                and the last thing I ever want is to make you sad. Please know that
+                and the last thing I ever want is to make you sad.I Didn't mean to annoy you. Please know that
                 every smile of yours means the world to me.
               </p>
 
@@ -148,14 +148,14 @@ function Index() {
                 <span className="absolute -left-1 top-12 animate-heartbeat text-2xl" style={{ animationDelay: "0.4s" }}>💕</span>
               </div>
               <h2 className="font-display text-5xl text-primary sm:text-6xl">
-                Thank you, my love
+                Thank you, Baby 🥺💕
               </h2>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                You make my whole world brighter. I promise to do better, to listen
-                more, and to love you a little louder every single day. 🌷
+                You make my whole world brighter. That why i said what i said. Its the truth but more importantly i value your smile and free mind.
+                I will be there for you no matter what. I promise to be there for youlouder every single day. 🌷 Baby one more thing try not to show this to anyone kinda feel shy im not used to do things like this 😅💞.
               </p>
               <p className="mt-6 font-display text-3xl text-primary/90">
-                Forever yours 💕
+                yours 💕
               </p>
 
               <button
@@ -174,7 +174,7 @@ function Index() {
         </div>
 
         <p className="mt-6 text-center text-sm text-muted-foreground/80">
-          made with 💕 just for you
+          made with 💕 for you
         </p>
       </section>
     </main>

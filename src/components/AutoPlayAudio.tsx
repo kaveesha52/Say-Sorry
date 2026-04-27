@@ -1,52 +1,55 @@
-import { useEffect, useRef } from "react";
-
-const SONG_URL = "/audio/cute-song.mp3";
+import { useEffect, useRef, useState } from "react";
 
 export function AutoPlayAudio() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    const audio = new Audio(SONG_URL);
-    audio.loop = true;
-    audio.volume = 0.4;
-    audio.preload = "auto";
-    audioRef.current = audio;
-
-    // Try to autoplay (browsers usually block this without user gesture)
     const playAudio = () => {
-      if (audioRef.current && audioRef.current.paused) {
-        audioRef.current.play().catch(() => {
-          // User gesture needed - handled by listener below
-        });
+      if (audioRef.current) {
+        audioRef.current.muted = false;
+        audioRef.current.volume = 0.4;
+        audioRef.current
+          .play()
+          .then(() => {
+            console.log("Audio is playing!");
+            setIsPlaying(true);
+          })
+          .catch((err) => {
+            console.log("Autoplay prevented, waiting for user interaction...", err);
+          });
       }
     };
 
-    // Autoplay on first user interaction
-    const startOnInteraction = () => {
-      playAudio();
-      // Remove listeners after first successful interaction
-      window.removeEventListener("click", startOnInteraction);
-      window.removeEventListener("touchstart", startOnInteraction);
-      window.removeEventListener("keydown", startOnInteraction);
+    // Try to play immediately
+    setTimeout(playAudio, 100);
+
+    // If autoplay blocked, play on first interaction
+    const playOnInteraction = () => {
+      if (!isPlaying && audioRef.current) {
+        playAudio();
+        document.removeEventListener("click", playOnInteraction);
+        document.removeEventListener("touchstart", playOnInteraction);
+      }
     };
 
-    window.addEventListener("click", startOnInteraction);
-    window.addEventListener("touchstart", startOnInteraction);
-    window.addEventListener("keydown", startOnInteraction);
-
-    // Try autoplay on load
-    playAudio();
+    document.addEventListener("click", playOnInteraction);
+    document.addEventListener("touchstart", playOnInteraction);
 
     return () => {
-      window.removeEventListener("click", startOnInteraction);
-      window.removeEventListener("touchstart", startOnInteraction);
-      window.removeEventListener("keydown", startOnInteraction);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
-      }
+      document.removeEventListener("click", playOnInteraction);
+      document.removeEventListener("touchstart", playOnInteraction);
     };
-  }, []);
+  }, [isPlaying]);
 
-  return null; // No UI, just autoplay
+  return (
+    <audio
+      ref={audioRef}
+      loop
+      preload="auto"
+      style={{ display: "none" }}
+    >
+      <source src="/audio/cute-song.mp3" type="audio/mpeg" />
+    </audio>
+  );
 }
