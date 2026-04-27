@@ -149,8 +149,7 @@ export default function Home() {
                 Thank you, my love
               </h2>
               <p className="mt-5 text-base leading-relaxed text-gray-700 sm:text-lg">
-                You make my whole world brighter. I promise to do better, to listen
-                more, and to love you a little louder every single day. 🌷
+                you make my whole world brighter. but i dont want to annoy you but the only thing i want is you. i promise to do anything no matter what and be with you. Also one more thing try not to show this to anybody kinda shy im not used to make things like this you know me ne 😅💕
               </p>
               <p className="mt-6 text-3xl text-pink-500 font-caveat">
                 Forever yours 💕
