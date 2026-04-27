@@ -81,11 +81,11 @@ function Index() {
               </div>
 
               <h1 className="font-display animate-shimmer text-5xl text-primary sm:text-6xl">
-                I'm Sorry
+                I'm Sorry Kavee 
               </h1>
 
               <p className="mt-4 font-display text-2xl text-foreground/80 sm:text-3xl">
-                ...my love 💕
+                🥺💕!!!
               </p>
 
               <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
