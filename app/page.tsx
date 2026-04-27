@@ -51,20 +51,38 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Audio player */}
+      {/* Audio player — autoplays on load; unmutes on first interaction */}
       <audio
+        ref={(el) => {
+          if (!el) return;
+          el.volume = 0.4;
+          const tryPlay = () => {
+            el.muted = false;
+            el.play().catch(() => {});
+          };
+          // Try immediately (works if browser allows)
+          el.play().then(() => {
+            // Unmute shortly after autoplay starts
+            setTimeout(() => { el.muted = false; }, 200);
+          }).catch(() => {
+            // Fallback: wait for first user interaction
+            const onInteract = () => {
+              tryPlay();
+              window.removeEventListener('click', onInteract);
+              window.removeEventListener('touchstart', onInteract);
+              window.removeEventListener('keydown', onInteract);
+            };
+            window.addEventListener('click', onInteract);
+            window.addEventListener('touchstart', onInteract);
+            window.addEventListener('keydown', onInteract);
+          });
+        }}
         autoPlay
         loop
-        muted
-        onLoadedMetadata={(e) => {
-          const audio = e.currentTarget as HTMLAudioElement;
-          audio.muted = false;
-          audio.volume = 0.4;
-        }}
+        playsInline
+        src="/audio/cute-song.mp3"
         style={{ display: 'none' }}
-      >
-        <source src="/audio/cute-song.mp3" type="audio/mpeg" />
-      </audio>
+      />
 
       {/* Main content */}
       <section className="relative z-10 w-full max-w-xl">
