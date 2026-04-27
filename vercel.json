@@ -1,9 +1,6 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
-  "env": {
-    "VITE_API_URL": "@database_url"
-  },
   "routes": [
     {
       "src": "/index.html",
